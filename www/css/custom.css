@@ -1,0 +1,421 @@
+/* =============================================================================
+   Estilos Minimalistas - Galería de Apps Shiny Estación R
+   ============================================================================= */
+
+/* Variables de colores minimalistas */
+:root {
+  --color-azul: #405BFF;
+  --color-amarillo: #EAFF38;
+  --color-blanco: #FFFFFF;
+  --color-negro: #000000;
+}
+
+/* Reset y base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background-color: var(--color-blanco);
+  color: var(--color-negro);
+  line-height: 1.6;
+}
+
+/* Header minimalista */
+.header-minimal {
+  background-color: var(--color-blanco);
+  padding: 3rem 0 2rem 0;
+  border-bottom: 3px solid var(--color-negro);
+}
+
+.titulo-principal {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-negro);
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
+}
+
+.subtitulo {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-negro);
+  margin: 0;
+  line-height: 1.8;
+}
+
+/* Links en el subtítulo */
+.link-estacion,
+.link-curso {
+  color: var(--color-azul);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.link-estacion:hover,
+.link-curso:hover {
+  border-bottom-color: var(--color-amarillo);
+}
+
+/* Imagen de portada en header */
+.img-portada {
+  max-width: 100%;
+  height: auto;
+  border: 3px solid var(--color-negro);
+  box-shadow: 6px 6px 0 var(--color-amarillo);
+  transition: transform 0.2s ease;
+}
+
+.img-portada:hover {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0 var(--color-amarillo);
+}
+
+/* Grid de apps */
+#apps-grid {
+  padding: 2rem 0;
+}
+
+/* Tarjeta de app minimalista */
+.app-card-minimal {
+  background-color: var(--color-blanco);
+  border: 2px solid var(--color-negro);
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.app-card-minimal:hover {
+  border-color: var(--color-azul);
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0 var(--color-amarillo);
+}
+
+/* Nombre de la app */
+.app-nombre {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-negro);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+/* Autor */
+.app-autor {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-azul);
+  margin-bottom: 1rem;
+}
+
+/* Categoría */
+.app-categoria {
+  margin-bottom: 1rem;
+}
+
+.categoria-badge {
+  display: inline-block;
+  background-color: var(--color-amarillo);
+  color: var(--color-negro);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 2px solid var(--color-negro);
+}
+
+/* Descripción */
+.app-descripcion {
+  font-size: 0.95rem;
+  color: var(--color-negro);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  line-height: 1.5;
+}
+
+/* Link a la app */
+.app-link {
+  display: inline-block;
+  background-color: var(--color-azul);
+  color: var(--color-blanco);
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  border: 2px solid var(--color-negro);
+  transition: all 0.2s ease;
+  margin-top: auto;
+  text-align: center;
+}
+
+.app-link:hover {
+  background-color: var(--color-negro);
+  color: var(--color-amarillo);
+  transform: translateX(4px);
+}
+
+.app-link-disabled {
+  display: inline-block;
+  background-color: var(--color-blanco);
+  color: var(--color-negro);
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-negro);
+  font-weight: 500;
+  opacity: 0.5;
+  margin-top: auto;
+}
+
+/* Footer minimalista */
+.footer-minimal {
+  background-color: var(--color-negro);
+  color: var(--color-blanco);
+  padding: 2rem 0;
+  text-align: center;
+  margin-top: 4rem;
+  border-top: 3px solid var(--color-negro);
+}
+
+.footer-minimal p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.footer-minimal a {
+  color: var(--color-amarillo);
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.footer-minimal a:hover {
+  color: var(--color-azul);
+  text-decoration: underline;
+}
+
+/* Container personalizado */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .titulo-principal {
+    font-size: 2rem;
+  }
+
+  .subtitulo {
+    font-size: 1rem;
+  }
+
+  .app-card-minimal {
+    padding: 1.5rem;
+  }
+
+  .app-card-minimal:hover {
+    transform: none;
+    box-shadow: 4px 4px 0 var(--color-amarillo);
+  }
+
+  .header-minimal {
+    padding: 2rem 0 1.5rem 0;
+  }
+}
+
+/* Eliminar estilos de Bootstrap que interfieran */
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.col-md-6, .col-lg-4 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Animación sutil de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-card-minimal {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* =============================================================================
+   ESTILOS PARA PÁGINA DE TABLA
+   ============================================================================= */
+
+/* Inputs de filtros */
+.form-control,
+.form-select {
+  border: 2px solid var(--color-negro);
+  border-radius: 0;
+  font-family: 'Ubuntu', sans-serif;
+  padding: 0.5rem 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-azul);
+  box-shadow: 2px 2px 0 var(--color-amarillo);
+  outline: none;
+}
+
+.form-label {
+  font-weight: 500;
+  color: var(--color-negro);
+  margin-bottom: 0.5rem;
+}
+
+/* Tabla minimalista */
+.table-minimal {
+  border: 2px solid var(--color-negro);
+  background-color: var(--color-blanco);
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.table-minimal thead {
+  background-color: var(--color-negro);
+  color: var(--color-blanco);
+  border-bottom: 3px solid var(--color-negro);
+}
+
+.table-minimal thead th {
+  padding: 1rem;
+  font-weight: 700;
+  text-align: left;
+  border-right: 2px solid var(--color-blanco);
+}
+
+.table-minimal thead th:last-child {
+  border-right: none;
+}
+
+.table-minimal tbody tr {
+  border-bottom: 2px solid var(--color-negro);
+  transition: background-color 0.2s ease;
+}
+
+.table-minimal tbody tr:hover {
+  background-color: rgba(234, 255, 56, 0.15);
+}
+
+.table-minimal tbody td {
+  padding: 0.75rem 1rem;
+  border-right: 2px solid var(--color-negro);
+}
+
+.table-minimal tbody td:last-child {
+  border-right: none;
+}
+
+/* Link en tabla */
+.table-link {
+  color: var(--color-azul);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.table-link:hover {
+  border-bottom-color: var(--color-azul);
+}
+
+/* DataTables controls */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+  font-family: 'Ubuntu', sans-serif;
+  color: var(--color-negro);
+  padding: 1rem 0;
+}
+
+.dataTables_wrapper .dataTables_length select {
+  border: 2px solid var(--color-negro);
+  border-radius: 0;
+  padding: 0.25rem 0.5rem;
+  font-family: 'Ubuntu', sans-serif;
+  margin: 0 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  border: 2px solid var(--color-negro);
+  background-color: var(--color-blanco);
+  color: var(--color-negro);
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: var(--color-azul);
+  color: var(--color-blanco);
+  border-color: var(--color-azul);
+  box-shadow: 2px 2px 0 var(--color-amarillo);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background-color: var(--color-negro);
+  color: var(--color-blanco);
+  border-color: var(--color-negro);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Navbar tabs */
+.nav-link {
+  color: var(--color-negro);
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-azul);
+  border-bottom-color: var(--color-amarillo);
+}
+
+.nav-link.active {
+  color: var(--color-azul);
+  border-bottom-color: var(--color-azul);
+}
+
+/* Responsive para tabla */
+@media (max-width: 768px) {
+  .table-minimal thead th,
+  .table-minimal tbody td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .dataTables_wrapper .dataTables_length,
+  .dataTables_wrapper .dataTables_info {
+    font-size: 0.85rem;
+  }
+}
