@@ -238,6 +238,12 @@ calculate_stats <- function(data) {
   if (!is.null(a)) a else b
 }
 
+# Helpers compartidos ---------------------------------------------------------
+
+is_na_or_empty <- function(x) {
+  is.null(x) || length(x) == 0 || (length(x) == 1 && (is.na(x) || x == ""))
+}
+
 # Versión Minimalista ---------------------------------------------------------
 
 #' Crear tarjeta de app individual - Versión Minimalista
@@ -351,4 +357,96 @@ create_apps_datatable_minimal <- function(data) {
       columns = 1:ncol(table_data),
       fontFamily = 'Ubuntu'
     )
+}
+
+# Sección "Hecho en Shiny" ----------------------------------------------------
+
+#' Parsear string de tags separados por coma a vector de caracteres
+parse_tags <- function(tags_string) {
+  if (is_na_or_empty(tags_string)) return(character(0))
+  trimws(strsplit(as.character(tags_string), ",")[[1]])
+}
+
+#' Cargar datos de inspiración desde ODS
+load_inspiracion_data <- function(file_path = "lista_inspiracion.ods") {
+  if (!file.exists(file_path)) {
+    return(data.frame(
+      nombre_app  = character(),
+      autor       = character(),
+      descripcion = character(),
+      tipo        = character(),
+      url_app     = character(),
+      url_github  = character(),
+      tags        = character(),
+      stringsAsFactors = FALSE
+    ))
+  }
+  data <- readODS::read_ods(file_path)
+  data %>%
+    filter(!is.na(nombre_app), nombre_app != "", !startsWith(nombre_app, "EJEMPLO"))
+}
+
+#' Crear tarjeta para sección "Hecho en Shiny"
+#'
+#' Muestra tipo (badge), nombre, autor, descripción, tags de features,
+#' y dos links: app en producción + código en GitHub.
+create_inspiracion_card <- function(app_info) {
+  tag_items <- parse_tags(app_info$tags)
+
+  div(
+    class = "app-card-minimal inspiracion-card",
+
+    # Tipo / categoría temática
+    if (!is_na_or_empty(app_info$tipo)) {
+      div(
+        class = "app-categoria",
+        tags$span(class = "categoria-badge", as.character(app_info$tipo))
+      )
+    },
+
+    # Nombre de la app
+    h3(class = "app-nombre", app_info$nombre_app %||% "Sin nombre"),
+
+    # Autor
+    if (!is_na_or_empty(app_info$autor)) {
+      p(class = "app-autor", as.character(app_info$autor))
+    },
+
+    # Descripción
+    if (!is_na_or_empty(app_info$descripcion)) {
+      p(class = "app-descripcion", as.character(app_info$descripcion))
+    },
+
+    # Tags de features/paquetes
+    if (length(tag_items) > 0) {
+      div(
+        class = "app-tags",
+        lapply(tag_items, function(t) tags$span(class = "tag-badge", t))
+      )
+    },
+
+    # Botones: Ver app + Código GitHub
+    div(
+      class = "app-links",
+      if (!is_na_or_empty(app_info$url_app)) {
+        tags$a(
+          href = as.character(app_info$url_app),
+          target = "_blank",
+          class = "app-link",
+          "Ver app →"
+        )
+      } else {
+        tags$span(class = "app-link-disabled", "Sin URL")
+      },
+      if (!is_na_or_empty(app_info$url_github)) {
+        tags$a(
+          href = as.character(app_info$url_github),
+          target = "_blank",
+          class = "github-link",
+          icon("github"),
+          " Código"
+        )
+      }
+    )
+  )
 }

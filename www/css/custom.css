@@ -262,6 +262,68 @@ html {
 }
 
 /* =============================================================================
+   SECCIÓN "HECHO EN SHINY"
+   ============================================================================= */
+
+/* Container de los dos botones (app + GitHub) */
+.app-links {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: auto;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+/* El .app-link dentro de .app-links no debe consumir todo el ancho */
+.app-links .app-link {
+  margin-top: 0;
+  flex: 1;
+  min-width: 120px;
+}
+
+/* Tags de paquetes / features */
+.app-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.tag-badge {
+  display: inline-block;
+  background-color: var(--color-blanco);
+  color: var(--color-azul);
+  border: 1.5px solid var(--color-azul);
+  padding: 0.18rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  font-family: 'Ubuntu Mono', 'Courier New', monospace;
+  letter-spacing: 0.02em;
+}
+
+/* Botón secundario: enlace al código GitHub */
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background-color: var(--color-blanco);
+  color: var(--color-negro);
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 2px solid var(--color-negro);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.github-link:hover {
+  background-color: var(--color-negro);
+  color: var(--color-amarillo);
+}
+
+/* =============================================================================
    ESTILOS PARA PÁGINA DE TABLA
    ============================================================================= */
 

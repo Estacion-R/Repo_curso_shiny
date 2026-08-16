@@ -14,7 +14,8 @@ library(DT)
 source("R/utils.R")
 
 # Cargar y procesar datos -----------------------------------------------------
-apps_data <- load_apps_data("lista_shinyapps.ods")
+apps_data        <- load_apps_data("lista_shinyapps.ods")
+inspiracion_data <- load_inspiracion_data("lista_inspiracion.ods")
 
 # Definir tema minimalista ----------------------------------------------------
 theme_minimal <- bs_theme(
@@ -103,7 +104,64 @@ ui <- page_navbar(
     )
   ),
 
-  # Panel 2: Tabla -----------------------------------------------------------
+  # Panel 2: Hecho en Shiny -------------------------------------------------
+  nav_panel(
+    title = "Hecho en Shiny",
+    value = "inspiracion",
+    icon = icon("star"),
+
+    # Header
+    div(
+      class = "header-minimal",
+      div(
+        class = "container",
+        div(
+          class = "row align-items-center",
+          div(
+            class = "col-md-8",
+            h1("Hecho en Shiny", class = "titulo-principal"),
+            p(
+              class = "subtitulo",
+              "Apps construidas con R + Shiny: referencia técnica y fuente de inspiración"
+            )
+          ),
+          div(
+            class = "col-md-4",
+            div(
+              class = "mt-3",
+              selectInput(
+                "filter_tipo",
+                label = NULL,
+                choices = NULL,
+                width = "100%"
+              )
+            )
+          )
+        )
+      )
+    ),
+
+    # Grid de tarjetas de inspiración
+    div(
+      class = "container mt-5",
+      div(
+        class = "row",
+        id = "inspiracion-grid",
+        uiOutput("inspiracion_cards")
+      )
+    ),
+
+    # Footer
+    div(
+      class = "footer-minimal",
+      p(
+        "Estación R ",
+        tags$a(href = "https://estacion-r.com/", target = "_blank", "estacion-r.com")
+      )
+    )
+  ),
+
+  # Panel 3: Tabla -----------------------------------------------------------
   nav_panel(
     title = "Tabla",
     value = "tabla",
@@ -178,23 +236,19 @@ ui <- page_navbar(
 
 # SERVER ----------------------------------------------------------------------
 server <- function(input, output, session) {
-  # Actualizar opciones de filtros
+  # Actualizar opciones de filtros (Tabla)
   observe({
-    # Categorías
     categorias <- sort(unique(as.character(apps_data$categoria)))
-    updateSelectInput(
-      session,
-      "filter_categoria",
-      choices = c("Todas" = "", categorias)
-    )
+    updateSelectInput(session, "filter_categoria", choices = c("Todas" = "", categorias))
 
-    # Autores
     autores <- sort(unique(as.character(apps_data$autor)))
-    updateSelectInput(
-      session,
-      "filter_autor",
-      choices = c("Todos" = "", autores)
-    )
+    updateSelectInput(session, "filter_autor", choices = c("Todos" = "", autores))
+  })
+
+  # Actualizar filtro de tipo (Hecho en Shiny)
+  observe({
+    tipos <- sort(unique(as.character(inspiracion_data$tipo)))
+    updateSelectInput(session, "filter_tipo", choices = c("Todos los tipos" = "", tipos))
   })
 
   # Datos filtrados
@@ -224,6 +278,36 @@ server <- function(input, output, session) {
     }
 
     return(data)
+  })
+
+  # PANEL HECHO EN SHINY: Tarjetas de inspiración
+  output$inspiracion_cards <- renderUI({
+    data <- inspiracion_data
+
+    if (!is.null(input$filter_tipo) && input$filter_tipo != "") {
+      data <- data %>% filter(tipo == input$filter_tipo)
+    }
+
+    if (nrow(data) == 0) {
+      return(div(
+        class = "col-12 text-center py-5",
+        p(
+          class = "text-muted",
+          "Todavía no hay apps cargadas. Agregá filas en ",
+          tags$code("lista_inspiracion.ods"),
+          " para poblar esta sección."
+        )
+      ))
+    }
+
+    cards <- lapply(1:nrow(data), function(i) {
+      div(
+        class = "col-md-6 col-lg-4 mb-4",
+        create_inspiracion_card(as.list(data[i, ]))
+      )
+    })
+
+    tagList(cards)
   })
 
   # PANEL GALERÍA: Tarjetas de apps
