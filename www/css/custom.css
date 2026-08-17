@@ -99,6 +99,23 @@ body {
   box-shadow: 8px 8px 0 var(--color-amarillo);
 }
 
+/* Screenshot de la app */
+.app-screenshot {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  border-bottom: 2px solid var(--color-negro);
+  margin: -2rem -2rem 1.5rem -2rem;
+  width: calc(100% + 4rem);
+  transition: opacity 0.2s ease;
+}
+
+.app-card-minimal:hover .app-screenshot {
+  opacity: 0.9;
+}
+
 /* Nombre de la app */
 .app-nombre {
   font-size: 1.5rem;

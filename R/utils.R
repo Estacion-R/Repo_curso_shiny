@@ -253,8 +253,24 @@ is_na_or_empty <- function(x) {
 #' @export
 create_app_card_minimal <- function(app_info) {
 
+  img_filename <- paste0("img/screenshot_", gsub("[^a-zA-Z0-9]", "_", tolower(app_info$autor %||% "")), ".png")
+  img_exists   <- file.exists(file.path("www", img_filename))
+
   div(
     class = "app-card-minimal",
+
+    # Screenshot de la app (si existe)
+    if (img_exists) {
+      tags$a(
+        href = app_info$url %||% "#",
+        target = "_blank",
+        tags$img(
+          src   = img_filename,
+          class = "app-screenshot",
+          alt   = paste("Screenshot de", app_info$nombre_app %||% "la app")
+        )
+      )
+    },
 
     # Nombre de la app
     h3(
