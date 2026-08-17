@@ -265,6 +265,12 @@ html {
    SECCIÓN "HECHO EN SHINY"
    ============================================================================= */
 
+/* Hashtag en el título de sección */
+.titulo-hashtag {
+  color: var(--color-azul);
+  font-weight: 700;
+}
+
 /* Container de los dos botones (app + GitHub) */
 .app-links {
   display: flex;

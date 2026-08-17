@@ -119,7 +119,11 @@ ui <- page_navbar(
           class = "row align-items-center",
           div(
             class = "col-md-8",
-            h1("Hecho en Shiny", class = "titulo-principal"),
+            h1(
+              class = "titulo-principal",
+              tags$span(class = "titulo-hashtag", "#"),
+              "HechoEnShiny"
+            ),
             p(
               class = "subtitulo",
               "Apps construidas con R + Shiny: referencia técnica y fuente de inspiración"
