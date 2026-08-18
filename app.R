@@ -38,9 +38,9 @@ ui <- page_navbar(
     tags$link(rel = "stylesheet", type = "text/css", href = "css/custom.css")
   ),
 
-  # Panel 1: Galería (Principal) --------------------------------------------
+  # Panel 1: Apps del Curso (Principal) --------------------------------------------
   nav_panel(
-    title = "Galería",
+    title = "Apps del Curso",
     value = "galeria",
     icon = icon("th"),
 
@@ -70,6 +70,17 @@ ui <- page_navbar(
                 "\"🖥️ Introducción a Shiny: construí tus primeros dashboards con R\"",
                 class = "link-curso"
               )
+            ),
+            p(
+              class = "descripcion-seccion mt-3",
+              "Cada app fue construida de forma autónoma por los alumnos como proyecto final del curso: eligiendo datos, tema y diseño propios. Esta galería muestra en concreto lo que se puede hacer con R + Shiny. Si te interesa aprender, conocé el curso ",
+              tags$a(
+                href = "https://estacion-r.com/courses",
+                target = "_blank",
+                "acá",
+                class = "link-curso"
+              ),
+              "."
             )
           ),
           div(
