@@ -5,9 +5,6 @@ account: estacionr
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 15857401
-bundleId: 11078511
+bundleId: 12448533
 url: https://estacionr.shinyapps.io/Repo_curso_shiny/
 version: 1
-asMultiple: FALSE
-asStatic: FALSE
-ignoredFiles: .claude/settings.local.json|.posit/publish/deployments/deployment-L43R.toml|.posit/publish/Repositorio de APPs - Curso Es-6M7N.toml|CAMBIOS_V2.md|claude.md|EJECUTAR.md|HISTORIAL_DESARROLLO.md|INICIO_RAPIDO.md|README.md|run_app.R|test_app.R|VERSION_MINIMALISTA.md
